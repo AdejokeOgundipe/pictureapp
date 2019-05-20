@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   
+     <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+     <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
+    <!--- FontAwesome -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+   
+   
+
+    <title>My Website</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <style>
+    body {
+      padding-top: 50px;
+    }
+    .starter-template {
+      padding: 40px 15px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+     @media (min-width: 500px){
+       h1:: before{
+         content: "Web page"
+       }
+     }
+    </style>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" >
+        <!-- <nav class="nav nav-pills"> -->
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">User Dashboard</a>
+        </div>
+        <form class="navbar-right">
+          <input type="text" class="form-control" placeholder="Search ...">
+
+        </form>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/Home">Home</a></li>
+
+            <li><a href="/Profile">Profile</a></li>
+            <li><a href="Settings">Settings</a></li>
+            
+            <li><a href="{{ url_for('Logout')}}">Logout</a></li>
+           <br />
+          </ul>
+          <!-- <form class="navbar-right">
+            <input type="text" class="form-control" placeholder="Search ...">
+          </form> -->
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class= "container-fluid">
+        <div id="row">
+      <!-- Sidebar -->
+      <div class="col-sm-3 col-mmd-2 sidebar" style="background-color:yellow">
+       
+       <ul class="nav nav-sidebar">
+        
+         <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                 <li class="sidebar-brand">
+                     <a href="#"> Pictures</a> </li><br /><br />
+                     <br />
+                     <br />
+                 <li><a href="#">Post new</a></li><br />
+                 <br />
+                 <br />
+
+                 <li><a href="#">Remove Post</a> </li>
+                 <br />
+                 <br />
+                 <br />
+         </ul>
+         <ul class="navnav-sidebar">
+           <li><a href=""> Reports</a></li>
+           <li><a href=""> Reportsss</a></li>
+         </ul>
+         </div>
+         <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 main">
+<h1 class="page-header">Welcome,NAME</h1>
+         </div>         
+     </div>
+    
+    <div class="container">
+
+      <div class="starter-template">
+     
+        {% block content %}
+        
+        {% endblock %}
+
+        </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+  </body>
+</html>
