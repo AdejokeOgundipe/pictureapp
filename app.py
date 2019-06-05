@@ -157,7 +157,36 @@
     # print ("Accept incoming file", filename)
     # print ("save it to :", destination)
     
+#     @app.route('/upload',methods=["POST"])
+# def upload_post():
+#     target = os.path.join(APP_ROOT, 'static\\')
+#     print(target)
+#     try:
+
+#         if  os.path.isdir(target):
+#             os.mkdir(target)
+#         # else:
+#         #     print("couldn't create upload directory: {}".format(target))
+#     except:
+#         print('just continue please')
+#     file = request.files['inputFile']
+
+#     print("{} is the file name".format(file.filename))
+#     str = base64.b64encode(file.read())
+#     #print(str)
     
+#     cursor.execute('''INSERT INTO Picture(
+                            
+#                             UserId,
+#                             Name,
+#                             ActualString,
+#                             Caption) 
+#                             VALUES(?,?,?,?)''',(1,"image","logic",str))
+#     cursor.commit()
+#     print('saved successfully')
+
+    
+#     return redirect(url_for('dashboard'))
     
     # conversion of image to string
     # with open(filePath,"rb") as image:
@@ -167,3 +196,81 @@
     #     print (b[0])
 
     #file.save(destination)
+    # for converting the string back to image in the sql server
+
+    # cursor.execute('SELECT * FROM Picture')
+    # myresults= cursor.fetchall()
+    # print(myresults)
+    # # converting str back to image
+    # img=base64.b85decode(str)
+    # return (file.filename)
+
+     # return send_from_directory("static",filename , as_attachment=True)
+
+# @app.route('/upload/<filename>')
+# def send_image('filename'):
+#     return send_from directory('static',filename)
+
+
+
+# for pic in my_results:
+    #     print(list(pic))
+    # file =  open(os.path.join(APP_ROOT, 'static\\') + "testImage.jpg", "wb")
+    # file.write(base64.b64decode(image_string))
+    # file.close()
+# @app.route('/upload',methods=["GET"])
+# def upload():
+#     #file=request.files['inputfile']
+
+#     return render_template('upload.html') 
+
+# @app.route('/upload',methods=["POST"])
+# def upload_post():
+#     target = os.path.join(APP_ROOT, 'static\\')
+#     print(target)
+#     try:
+
+#         if  os.path.isdir(target):
+#             os.mkdir(target)
+#         # else:
+#         #     print("couldn't create upload directory: {}".format(target))
+#     except:
+#         print('just continue please')
+#     file = request.files['inputFile']
+
+#     print("{} is the file name".format(file.filename))
+#     str = base64.b64encode(file.read())
+#     #print(str)
+#     cursor.execute('''INSERT INTO Picture(
+                            
+#                             UserId,
+#                             Name,
+#                             ActualString,
+#                             Caption) 
+#                             VALUES(?,?,?,?)''',(1,"image","logic",str))
+#     cursor.commit()
+#     print('saved successfully')
+
+#     # for converting the string back to image in the sql server
+
+#     # cursor.execute('SELECT * FROM Picture')
+#     # myresults= cursor.fetchall()
+#     # print(myresults)
+#     # # converting str back to image
+#     # img=base64.b85decode(str)
+#     # return (file.filename)
+#     return redirect(url_for('dashboard'))
+    # return send_from_directory("static",filename , as_attachment=True)
+
+# @app.route('/upload/<filename>')
+# def send_image('filename'):
+#     return send_from directory('static',filename)
+
+
+
+
+
+
+
+#cursor.execute('INSERT INTO  Picture(UserId,Name,ActualString,Caption) VALUES(?,?,?,?)',(1,"Remmy","img",image_names))
+    # cursor.commit()
