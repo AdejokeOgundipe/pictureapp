@@ -7,26 +7,103 @@ import pyodbc
 import os
 from flask_restful import Resource, Api
 import base64
+from sqlalchemy.ext.declarative import declarative_base
+import datetime
+from flask_migrate import Migrate
+from flask_mail import Mail,Message
+
+#from models import *
+
+from flask_sqlalchemy import SQLAlchemy
+
+
+
 
 APP_ROOT =os.path.dirname(os.path.abspath(__file__))
 
-# database connection using pyodbc 
+# database connection using pyodbc in sql server
 conn = pyodbc.connect(
     "Driver={SQL Server Native Client 11.0};"
     "Server=DESKTOP-TN8OFN2\\SQLEXPRESS;"
     "Database=Test;"
     "Trusted_Connection=yes; ")
 cursor=conn.cursor()
-# session assignment
-#session['username'] = 'username'
+
+
 app= Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI']='mssql+pyodbc://DESKTOP-TN8OFN2\\SQLEXPRESS/test?driver=SQL+Server+Native+Client+11.0'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db=SQLAlchemy(app)
 
 # secret key assignment
 app.config['SECRET_KEY'] = 'mysecretthings'
 Bootstrap(app)
 api=Api(app)
+mail = Mail(app)
 
-# class definition for action Login
+class User(db.Model):
+    __tablename__='User'
+    id= db.Column('id',db.Integer, primary_key=True)
+    Name=db.Column(db.String(80))
+    Email=db.Column(db.String(80), unique=True)
+    Password=db.Column(db.String(128))
+    Username=db.Column(db.String(80))
+    def __init__(self,Name,Email,Password,username):
+        self.Name = Name
+        self.Email=Email
+        self.Password=Password
+        self.Username=username 
+         
+# model for Picture
+class Picture(db.Model):
+    __tablename__='Picture'
+    id=db.Column(db.Integer, primary_key=True)
+    User_Id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    ActualString = db.Column(db.String(80))
+    Caption=db.Column(db.String(128))
+    def __init__(self,User_Id,ActualString,Caption):
+        self.User_Id = User_Id
+        self.ActualString=ActualString
+        self.Caption=Caption
+
+
+   
+# model for comment
+class Comment(db.Model):
+    __tablename__='Comment'
+    id=db.Column(db.Integer, primary_key=True)
+    Comment=db.Column(db.String(128))
+    PictureId=db.Column(db.Integer,db.ForeignKey('Comment.PictureId'))
+    def __init__(self,Name,Email,Password,username):
+        self.Comment = Comment
+        self.PictureId=PictureId
+    
+#model for likes
+class Likes(db.Model):
+    __tablename__='Likes'
+    id=db.Column(db.Integer, primary_key=True)
+    User_Id=db.Column(db.Integer, db.ForeignKey('UserId.Likes'))
+    def __init__(self,Name,Email,Password,username):
+        self.UserId = UserId
+ 
+# def main():
+#     user=User(Name="Adejoke",Email="ogundipeadejoke12@gmail.com",username="AARE24", Password="123456789")
+  
+
+# to class a new user in sqlalchemy
+def main():
+    db.init_app(app)
+
+    
+@app.route('/Email')
+def EmailAddress():
+    return "Message sent"
+ 
+
+
+#class definition for action Login
 class loginform(FlaskForm):
     username=StringField('username',validators=[InputRequired(),Length(min=4, max=15)])
     password = PasswordField('password', validators=[InputRequired(),Length(min=8, max=80)])
@@ -44,7 +121,18 @@ class Registrationform(FlaskForm):
 @app.route('/')
 def MyWebsite():
      return redirect(url_for('Myhome'))
-   
+
+
+@app.route('/User', methods=["GET","POST"])
+def Mad():
+    if request.method=="POST":
+        new_user = User(request.form['Name'],request.form['Email'],request.form['Password'],request.form['username'])
+        print(new_user)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('Myhome'))
+    return render_template('User.html',User=User.query.all())
+
 
 @app.route('/Login', methods=['GET','POST'])
 def login():  
@@ -53,16 +141,26 @@ def login():
    
     if form.validate_on_submit():
      # obtaining data from database
-        cursor.execute('SELECT [Username],[Password] FROM [User] WHERE Username=? AND Password= ?',(form.username.data, form.password.data))
+        #cursor.execute('SELECT [Username],[Password] FROM [User] WHERE Username=? AND Password= ?',(form.username.data, form.password.data))
+        #new_user= User(request.form['username'],request.form['password'])
+       # print(new_user)
         
-        if (len(list(cursor))> 0):
+        username_field = request.form['username']
+        password_field = request.form['password']
+
+        user = User.query.filter_by(Username = username_field, Password = password_field).first()
+        print(user)
+
+        if (user is None):
+            return redirect(url_for("login"))
+        
+        if (user is not None):
             session['username'] = request.form['username']
-        
             return redirect(url_for('Myhome'))
         
 
-        return "Invalid Username and password <br />"+ "Not yet registered?" + "<a href='/Registration'><br />" +  "click here to Register <br /> </a>"
-       
+        #return "Invalid Username and password <br />"+ "Not yet registered?" + "<a href='/Registration'><br />" +  "click here to Register <br /> </a>" + "to re-login," + "<a href='/Login'><br />" +  "click here to log-in <br /> </a>"
+        return redirect(url_for("login"))
 
     return render_template('login.html',form=form)
 
@@ -85,6 +183,7 @@ def Registration():
 def dashboard():
     if 'username' in session:
         return render_template('dashboard.html')
+    return redirect(url_for('login'))
 
 
 @app.route('/upload',methods=["GET"])
@@ -121,8 +220,7 @@ def upload_post():
                             VALUES(?,?,?,?)''',(1,"Adejoke","images",filename))
         cursor.commit()
         return render_template('dashboard.html', image_name= filename)
-    
-    
+
     
 @app.route('/upload/<filename>')
 def send_image(filename):
@@ -186,5 +284,8 @@ def profile():
     return render_template('Profile.html')
 
 
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+    main()

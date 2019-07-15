@@ -424,3 +424,82 @@
     # data= request.get( cursor.execute('SELECT [Caption]  FROM Picture '))
     #print(data)
     # print(json.dumps(data))
+
+# sqlalchemy
+# class User(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name=db.Column(db.String(50))
+#     location = db.Column(db.String(50))
+#     date_created = db.Column(db.DateTime, default=datetime.now)
+
+
+#login stuff
+# if (request.form['password'] !=form.password.data and request.form['username'] !=form.username.data):
+            #     session['logged_in'] = True
+            # else:
+            #     flash('wrong details')
+            # if (session['username'] not request.form['username'] ):
+            #     print ("please check your data")
+
+
+    # if request.form['password'] !=form.password.data and request.form['username'] !=form.Email.data
+    #             session['logged_in'] =True
+    #         else:
+    #             flash('wrong details')
+    
+#engine = sa.create_engine('mssql+pyodbc://DESKTOP-TN8OFN2\\SQLEXPRESS/test?driver=SQL+Server+Native+Client+11.0')
+
+    # sqlalchemy 
+    #app.config['SQLALCHEMY_DATABASE_URI']='mssql+pyodbc://DESKTOP-TN8OFN2\\SQLEXPRESS/test?driver=SQL+Server+Native+Client+11.0'
+# app.config['SQLALCHEMY_DATABASE_URI'] = cursor
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# engine = create_engine(cursor,convert_unicode=True)
+#dbs=create_engine(conn)
+#db=SQLAlchemy(app)
+#import sqlalchemy as sa
+
+# @app.route('/trying')
+# def trying():
+#      return render_template('trying.html')
+   
+
+   #sqlalchemy
+     # user=('SELECT * FROM  [User'])
+        # print(user)
+        
+        # result=engine.query.all()
+        # print(result)
+        # result = User(property="value",property="success")
+        # print(result)
+        # session.add(result)
+        # session.commit()
+        # session.query(User).all()
+        #from sqlalchemy import create_engine
+
+#from flask_sqlalchemy import engine
+#from flask_login import login_required, current_user
+# session assignment
+#session['username'] = 'username'
+        #sqlalchemy
+        # class Book(db.Model):
+    # title = db.Column(db.String(80),unique=True, 
+    # nullable =False, primary_key=True)
+    # def __repr__(self):
+    #     return "<Title: {}>".format(self.title)
+
+
+     # if (request.form):
+    #     # book =Book(title=request.form.get("title"))
+    #     # db.session.add(book)
+    #     # db.session.commit()
+    #     print(request.form)
+    # date_created = db.Column(db.Unicode)
+
+#login
+    #  cursor.execute('SELECT [Username],[Password] FROM [User] WHERE Username=? AND Password= ?',(form.username.data, form.password.data))
+        
+    #     if (len(list(cursor))> 0):
+    #         session['username'] = request.form['username']
+
+    #         return redirect(url_for('Myhome'))
+        

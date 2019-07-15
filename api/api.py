@@ -15,6 +15,10 @@ class Student(Resource):
 
 
 api.add_resource(Student, '/student/<string:name>')
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 # app.run(port=5000)
