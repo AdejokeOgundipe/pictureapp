@@ -503,3 +503,9 @@
 
     #         return redirect(url_for('Myhome'))
         
+
+
+# cursor.execute('insert into [User](Name,Email,Password,Username) values (?,?,?,?);',(form.name.data, form.Email.data, form.password.data, form.username.data))
+        # cursor.commit()
+        # return "Your Registration was successful <br />" + "<a href='/Login'><br />" +  "click here to log in <br /> </a>"
+        #reg=User(Name=request.form.get("name"), Email=request.form.get("Email"), Username=request.form.get("username"), Password=request.form.get("password"))

@@ -4,21 +4,28 @@
 LOGIN PAGE
 {% endblock %} 
 {% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-danger">
+        {{ massages[0] }}   Go to  <a href="{{ url_for('Registration') }}"> page</a> 
+    </div>
+    {% endif %}
+    {% endwith %}
    <div class ="container">
        
 
         <form class="form-Login" method="POST" action="/Login">
            
-            <h2 class="form-Login-heading"> Login</h2>
+            <h2 class="form-Login-heading" style="color: deeppink"> Login</h2>
             {{form.hidden_tag()}}
                 {{wtf.form_field(form.username)}}
                 {{wtf.form_field(form.password)}}
                 {{wtf.form_field(form.remember)}} 
                 
 
-  <button class= "btn btn-lg btn-primary btn block" type="submit"> Log in</button>
+  <button class= "btn btn-lg btn-primary btn block" type="submit" > Log in</button>
 
-  <p><a href="{{ url_for('Registration') }}">Click here if you've not registered</a></p>
+  <p><a href="{{ url_for('Registration') }}"><p style="color:darkgoldenrod">Click here if you've not registered</p></a></p>
         </form>
     
     </div>

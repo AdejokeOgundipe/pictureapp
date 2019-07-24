@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <title>DashBoard &copy</title> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"crossorigin="anonymous"/>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Cute+Font&display=swap"
+      rel="stylesheet"/>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
+
+    <style>
+      body {
+        background-color: #ffffff;
+        width: 100%;
+        height: 100%;
+      }
+
+      .mainWrapper nav {
+        display: flex;
+      }
+
+      .sideBar{
+          height: 100%;
+          position: fixed; 
+          z-index: 1;
+          top: 10;
+          left: 10;
+          background-color:#f4f4f4;
+      }
+
+      .main{
+          height: 100%;
+          background-color: white;
+      }
+
+      /* nav ul{
+          padding-right: 20px;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="mainWrapper">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img src="{{ url_for('static',filename='logoico.jpg') }}" alt="Logo" class="d-inline-block align-top" width="30px" height="30px"> 
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="{{url_for('Myhome')}}">Home </a>
+                        </li> &nbsp;
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Create</a>
+                        </li> &nbsp;
+                      
+                        <!-- <li class="nav-item">
+                          <a class="nav-link" href="#" tabindex="-1" aria-disabled="false">Disabled</a>
+                        </li> -->
+
+                       <li class="nav-item">
+                           <a href=""><img src="{{ url_for('static',filename='Tiger.jpg') }} " alt="User's_image" class="rounded" height="20px" width="auto"> &nbsp;<small class="bg-light">Adejoke</small></a>
+                        </li>
+                      </ul>
+
+                      
+                      <br />
+                      <a href="{{ url_for('Logout')}}" style="color:deeppink">Logout </a>
+                    
+
+                      <br />
+                      <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"><span class=""></span>
+                        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+                      
+                    </div>
+                    
+                    
+                </div>
+                
+                
+                  </nav>
+
+                  <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-lg-3 sideBar d-flex justify-content-center">
+                            <div class="sideBarDetails py-5 px-5">
+                                <a class="nav-link" href="#">
+                                        <img src="{{ url_for('static',filename='adejoke copy.jpg') }} " style="width: 50px " height="50px" alt="User's_image" class="img-fluid"> &nbsp; 
+                                        <strong style="color:#000000;">Ogundipe Adejoke</strong>
+                                </a>
+                           
+                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <!-- <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                           Post <span class="fas fa-search"></span></a> -->
+                                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                                         <li role="presentation"><a href="/upload">Post</a></li>
+                                         <li role="presentation"><a href="/profile">PROFILE</a></li>
+                                      </div>
+                                   
+                        </div>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 main">
+                            <div class="mainContent">
+                              
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  {% block content %}
+        
+                  {% endblock %}
+                  
+    </div>
+  </body>
+</html>
