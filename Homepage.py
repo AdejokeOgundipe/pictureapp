@@ -129,6 +129,7 @@ def EmailAddress():
     print(msg.recipients)
     mail.send_message(msg)
     return "Message sent"
+    
  
 #smtplib.SMTPNotSupportedError: SMTP AUTH extension not supported by server.
 
